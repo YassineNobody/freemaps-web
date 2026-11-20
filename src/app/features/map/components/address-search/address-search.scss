@@ -1,0 +1,29 @@
+.address-search {
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
+
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    margin-left: 8px;
+    padding: 8px 12px;
+    background: #2563eb;
+    color: white;
+    border-radius: 4px;
+  }
+
+  ul {
+    margin-top: 12px;
+    list-style: none;
+
+    li {
+      padding: 8px 0;
+    }
+  }
+}

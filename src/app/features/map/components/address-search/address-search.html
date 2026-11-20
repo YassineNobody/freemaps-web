@@ -1,0 +1,26 @@
+<div class="address-search">
+  <input
+    type="text"
+    placeholder="Rechercher une adresse..."
+    #searchInput
+    [value]="query()"
+    (input)="query.set(searchInput.value)"
+    (keydown.enter)="search()"
+  />
+
+  <button type="button" (click)="search()">
+    Rechercher
+  </button>
+
+  @if (loading()) {
+    <p>Recherche en cours...</p>
+  }
+
+  @if (addresses().length > 0) {
+    <ul>
+      @for (address of addresses(); track $index) {
+        <li>{{ address.properties.label }}</li>
+      }
+    </ul>
+  }
+</div>
