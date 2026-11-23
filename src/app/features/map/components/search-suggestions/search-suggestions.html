@@ -1,0 +1,31 @@
+<ul
+  id="address-suggestions"
+  class="search-suggestions"
+  role="listbox"
+  aria-label="Suggestions d'adresses"
+>
+  @for (suggestion of suggestions(); track $index) {
+    <li
+      [id]="'address-suggestion-' + $index"
+      role="option"
+      [attr.aria-selected]="activeIndex() === $index"
+      [class.active]="activeIndex() === $index"
+    >
+      <button type="button" tabindex="-1" (click)="suggestionSelected.emit(suggestion)">
+        <ng-icon name="heroMapPin" aria-hidden="true" />
+
+        <span class="address-info">
+          <span class="address-name">
+            {{ suggestion.properties.name || suggestion.properties.label }}
+          </span>
+
+          @if (suggestion.properties.city) {
+            <span class="address-city">
+              {{ suggestion.properties.city }}
+            </span>
+          }
+        </span>
+      </button>
+    </li>
+  }
+</ul>

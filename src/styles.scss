@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @use './styles//preflight';
 
+@use './styles/variables/colors';
+@use './styles/variables/typography';
+@use './styles/variables/spacing';
+
 @import 'maplibre-gl/dist/maplibre-gl.css';
+
+html,
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+}

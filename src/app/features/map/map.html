@@ -1,2 +1,17 @@
 <app-map-view />
-<app-address-search />
+
+<app-address-search
+  [isPanelOpen]="isPanelOpen()"
+  (searchSubmitted)="onSearchSubmitted($event)"
+  (closeRequested)="closePanel()"
+/>
+
+@if (isPanelOpen()) {
+  <app-side-panel>
+    @switch (activePanelView()) {
+      @case ('search') {
+        <app-search-results [results]="searchResults()" />
+      }
+    }
+  </app-side-panel>
+}

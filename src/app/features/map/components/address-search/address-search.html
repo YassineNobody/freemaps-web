@@ -1,26 +1,54 @@
 <div class="address-search">
-  <input
-    type="text"
-    placeholder="Rechercher une adresse..."
-    #searchInput
-    [value]="query()"
-    (input)="query.set(searchInput.value)"
-    (keydown.enter)="search()"
-  />
+  <div class="input-address-search">
+    <div class="search-field">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher une adresse..."
+        #searchInput
+        role="combobox"
+        aria-label="Rechercher une adresse"
+        aria-autocomplete="list"
+        [attr.aria-controls]="
+          showSuggestions() && suggestions().length > 0 ? 'address-suggestions' : null
+        "
+        [attr.aria-expanded]="showSuggestions() && suggestions().length > 0"
+        [attr.aria-activedescendant]="
+          showSuggestions() && activeSuggestionIndex() >= 0
+            ? 'address-suggestion-' + activeSuggestionIndex()
+            : null
+        "
+        [value]="query()"
+        (input)="onQueryChange(searchInput.value)"
+        (focus)="onFocus()"
+        (keydown)="onKeydown($event)"
+      />
 
-  <button type="button" (click)="search()">
-    Rechercher
-  </button>
+      <button type="button" aria-label="Rechercher" (click)="search()">
+        <ng-icon name="heroMagnifyingGlass" />
+      </button>
+
+      @if (isPanelOpen()) {
+        <button type="button" aria-label="Fermer les résultats" (click)="closeSearch()">
+          <ng-icon name="heroXMark" />
+        </button>
+      }
+    </div>
+
+    @if (showSuggestions() && suggestions().length > 0) {
+      <app-search-suggestions
+        [suggestions]="suggestions()"
+        [activeIndex]="activeSuggestionIndex()"
+        (suggestionSelected)="selectSuggestion($event)"
+      />
+    }
+  </div>
 
   @if (loading()) {
-    <p>Recherche en cours...</p>
+    <p role="status">Recherche en cours...</p>
   }
 
-  @if (addresses().length > 0) {
-    <ul>
-      @for (address of addresses(); track $index) {
-        <li>{{ address.properties.label }}</li>
-      }
-    </ul>
+  @if (error()) {
+    <p role="alert">{{ error() }}</p>
   }
 </div>

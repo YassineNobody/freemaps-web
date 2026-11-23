@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.results-count {
+  padding: 1rem;
+  color: #5f6368;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 1rem;
+
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: #f1f3f4;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+}
+
+.result-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  color: #5f6368;
+}
+
+.address-info {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  gap: 0.375rem;
+}
+
+.address-name {
+  color: #202124;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.address-city {
+  color: #5f6368;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.empty-results {
+  padding: 2rem 1rem;
+  color: #5f6368;
+  font-size: 0.875rem;
+  text-align: center;
+}

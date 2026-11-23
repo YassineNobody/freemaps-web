@@ -1,0 +1,30 @@
+@if (results().length > 0) {
+  <p class="results-count">
+    {{ results().length }}
+    {{ results().length === 1 ? 'résultat' : 'résultats' }}
+  </p>
+
+  <ul class="results-list">
+    @for (result of results(); track $index) {
+      <li>
+        <button type="button" class="result-item" [attr.aria-label]="result.properties.label">
+          <ng-icon class="result-icon" name="heroMapPin" aria-hidden="true" />
+
+          <span class="address-info">
+            <span class="address-name">
+              {{ result.properties.name || result.properties.label }}
+            </span>
+
+            @if (result.properties.city) {
+              <span class="address-city">
+                {{ result.properties.city }}
+              </span>
+            }
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p class="empty-results">Aucun résultat trouvé.</p>
+}
